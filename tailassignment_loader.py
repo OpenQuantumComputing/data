@@ -33,4 +33,28 @@ def load_FR_CR(filename):
     best     = np.array([int(i) for i in best_str]) 
             
     return FR, CR, best
+
+def npy_loader(filename):
+    """
+    Loading the examples saved on npy format.
+
+    Parameters
+    ----------
+    filename : string
+        filename
     
+    Returns
+    -------
+    FR : array
+        Constraint matrix
+    CR : array
+        Weights
+
+    """
+    matrix = np.load(filename)
+
+    # The costs are saved in the last column
+    CR     = matrix[-1]
+    FR     = matrix[:-1]
+
+    return FR, CR
